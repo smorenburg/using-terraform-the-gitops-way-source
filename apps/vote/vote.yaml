@@ -1,0 +1,48 @@
+---
+apiVersion: infra.contrib.fluxcd.io/v1alpha2
+kind: Terraform
+metadata:
+  name: vote
+  namespace: flux-system
+spec:
+  path: ./apps/vote/terraform
+  interval: 1m
+  tfstate:
+    forceUnlock: auto
+  approvePlan: auto
+  destroyResourcesOnDeletion: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  runnerPodTemplate:
+    metadata:
+      labels:
+        azure.workload.identity/use: "true"
+    spec:
+      env:
+        - name: ARM_TENANT_ID
+          value: 7ddc4c97-c5a0-4a29-ac83-59be0f280518
+        - name: ARM_SUBSCRIPTION_ID
+          value: ae9db8ac-2682-4a98-ad36-7d13b2bd5a24
+        - name: ARM_CLIENT_ID
+          value: 377a0030-4480-45d8-8b1d-109f5cc24f05
+        - name: ARM_USE_OIDC
+          value: "true"
+        - name: ARM_OIDC_TOKEN_FILE_PATH
+          value: /var/run/secrets/azure/tokens/azure-identity-token
+  backendConfig:
+    customConfiguration: |
+      backend "azurerm" {
+       resource_group_name  = "rg-tfstate-nordcloud-neu"
+        storage_account_name = "stnordcloudn1hxyb"
+        container_name       = "tfstate"
+        key                  = "vote.northeurope.tfstate"
+        use_oidc             = true
+      }
+  vars:
+    - name: environment
+      value: staging
+    - name: container_image
+      value: mcr.microsoft.com/azuredocs/azure-vote-front:v1
+    - name: ingress_rule_host
+      value: vote.52.169.104.216.nip.io
