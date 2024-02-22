@@ -25,7 +25,7 @@ spec:
         - name: ARM_SUBSCRIPTION_ID
           value: ae9db8ac-2682-4a98-ad36-7d13b2bd5a24
         - name: ARM_CLIENT_ID
-          value: 377a0030-4480-45d8-8b1d-109f5cc24f05
+          value: e07ea001-0a1c-43a7-beac-8d07b951ba82
         - name: ARM_USE_OIDC
           value: "true"
         - name: ARM_OIDC_TOKEN_FILE_PATH
@@ -33,7 +33,7 @@ spec:
   backendConfig:
     customConfiguration: |
       backend "azurerm" {
-       resource_group_name  = "rg-tfstate-nordcloud-neu"
+       resource_group_name   = "rg-tfstate-nordcloud-neu"
         storage_account_name = "stnordcloudn1hxyb"
         container_name       = "tfstate"
         key                  = "vote.northeurope.tfstate"
