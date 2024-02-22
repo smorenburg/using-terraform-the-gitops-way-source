@@ -12,7 +12,6 @@ terraform {
       version = ">= 2.24"
     }
 
-    # TODO: Start using version 0.8 by adding the atlas-cli to the tf-runner container image.
     atlas = {
       source  = "ariga/atlas"
       version = "0.7"
@@ -40,13 +39,13 @@ data "terraform_remote_state" "environment" {
     storage_account_name = var.storage_account
     resource_group_name  = var.resource_group
     container_name       = "tfstate"
-    key                  = "${var.environment}.${var.location}.tfstate"
+    key                  = "${var.location}.tfstate"
   }
 }
 
 # TODO: Add comments.
 data "atlas_schema" "default" {
-  src     = file("templates/schema.hcl")
+  src = file("templates/schema.hcl")
   dev_url = join("", [
     "mysql://root@",
     kubernetes_service_v1.mysql_schema.metadata[0].name,
@@ -62,11 +61,8 @@ locals {
   # Lookup and set the location abbreviation, defaults to na (not available).
   location_abbreviation = try(var.location_abbreviation[var.location], "na")
 
-  # Lookup and set the environment abbreviation, defaults to na (not available).
-  environment_abbreviation = try(var.environment_abbreviation[var.environment], "na")
-
   # Construct the name suffix.
-  suffix = "${var.app}-${local.environment_abbreviation}-${local.location_abbreviation}"
+  suffix = "${var.app}-${local.location_abbreviation}"
 
   # Construct the data source name,
   dsn = join("", [
@@ -118,13 +114,13 @@ resource "azurerm_resource_group" "default" {
 }
 
 resource "azurerm_mysql_flexible_server" "default" {
-  name                   = "mysql-${var.app}-${local.environment_abbreviation}-${random_string.mysql.result}"
+  name                   = "mysql-${var.app}-${random_string.mysql.result}"
   resource_group_name    = azurerm_resource_group.default.name
   location               = var.location
   administrator_login    = random_pet.mysql_login.id
   administrator_password = random_password.mysql_password.result
-  sku_name               = "B_Standard_B1s" # TODO: Add sku_name as a variable.
-  zone                   = "1" # TODO: Add high-availability.
+  sku_name               = "B_Standard_B1s"
+  zone                   = "1"
 
   tags = {
     component = "database"
@@ -143,7 +139,7 @@ resource "azurerm_mysql_flexible_server_firewall_rule" "allow_all" {
 resource "atlas_schema" "default" {
   hcl     = data.atlas_schema.default.hcl
   dev_url = data.atlas_schema.default.dev_url
-  url     = join("", [
+  url = join("", [
     "mysql://",
     random_pet.mysql_login.id,
     ":",
@@ -310,7 +306,6 @@ resource "kubernetes_deployment_v1" "snipperbox" {
             protocol       = "TCP"
           }
 
-          # TODO: Store the arg in a secret (file). Develop the feature in Snippetbox first.
           args = ["-dsn", local.dsn]
 
           resources {

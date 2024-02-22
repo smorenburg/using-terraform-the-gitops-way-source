@@ -25,7 +25,7 @@ spec:
         - name: ARM_SUBSCRIPTION_ID
           value: ae9db8ac-2682-4a98-ad36-7d13b2bd5a24
         - name: ARM_CLIENT_ID
-          value: e07ea001-0a1c-43a7-beac-8d07b951ba82
+          value: 5a0f20fe-d335-45ca-8217-f1704d22d9ee
         - name: ARM_USE_OIDC
           value: "true"
         - name: ARM_OIDC_TOKEN_FILE_PATH
@@ -40,8 +40,6 @@ spec:
         use_oidc             = true
       }
   vars:
-    - name: environment
-      value: staging
     - name: resource_group
       value: rg-tfstate-nordcloud-neu
     - name: storage_account
@@ -49,4 +47,4 @@ spec:
     - name: container_image
       value: smorenburg/snippetbox:0.0.6
     - name: ingress_rule_host
-      value: snippetbox.52.169.104.216.nip.io
+      value: snippetbox.52.178.207.153.nip.io

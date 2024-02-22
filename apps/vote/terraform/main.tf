@@ -28,11 +28,8 @@ locals {
   # Lookup and set the location abbreviation, defaults to na (not available).
   location_abbreviation = try(var.location_abbreviation[var.location], "na")
 
-  # Lookup and set the environment abbreviation, defaults to na (not available).
-  environment_abbreviation = try(var.environment_abbreviation[var.environment], "na")
-
   # Construct the name suffix.
-  suffix = "${var.app}-${local.environment_abbreviation}-${local.location_abbreviation}"
+  suffix = "${var.app}-${local.location_abbreviation}"
 }
 
 # Generate a random suffix for the Azure Cache for Redis.
@@ -54,7 +51,7 @@ resource "azurerm_resource_group" "default" {
 
 # Create the Azure Cache for Redis.
 resource "azurerm_redis_cache" "default" {
-  name                = "redis-${var.app}-${local.environment_abbreviation}-${random_string.redis.result}"
+  name                = "redis-${var.app}-${random_string.redis.result}"
   location            = var.location
   resource_group_name = azurerm_resource_group.default.name
   capacity            = 0
@@ -130,7 +127,6 @@ resource "kubernetes_deployment_v1" "default" {
           }
 
           env {
-            # TODO: Store the value in a secret.
             name  = "REDIS_PWD"
             value = azurerm_redis_cache.default.primary_access_key
           }
