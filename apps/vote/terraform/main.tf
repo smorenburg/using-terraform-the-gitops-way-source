@@ -52,7 +52,7 @@ resource "azurerm_resource_group" "default" {
 
 # Create the Azure Cache for Redis.
 resource "azurerm_redis_cache" "default" {
-  name                = "redis-${local.suffix}-${random_string.redis.result}"
+  name                = "redis-${var.app}-${random_string.redis.result}"
   location            = var.location
   resource_group_name = azurerm_resource_group.default.name
   capacity            = 0
