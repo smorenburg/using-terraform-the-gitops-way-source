@@ -25,7 +25,7 @@ spec:
         - name: ARM_SUBSCRIPTION_ID
           value: ae9db8ac-2682-4a98-ad36-7d13b2bd5a24
         - name: ARM_CLIENT_ID
-          value: 8be53e77-e57e-4f23-a58d-8309ac65af2a
+          value: e43e1e57-d673-4cf2-9bd7-936159c17a55
         - name: ARM_USE_OIDC
           value: "true"
         - name: ARM_OIDC_TOKEN_FILE_PATH
@@ -34,7 +34,7 @@ spec:
     customConfiguration: |
       backend "azurerm" {
        resource_group_name   = "rg-tfstate-nc-neu"
-        storage_account_name = "stnc937408"
+        storage_account_name = "stnc247a"
         container_name       = "tfstate"
         key                  = "vote.northeurope.tfstate"
         use_oidc             = true
@@ -43,4 +43,4 @@ spec:
     - name: container_image
       value: mcr.microsoft.com/azuredocs/azure-vote-front:v1
     - name: ingress_rule_host
-      value: vote.52.169.235.227.nip.io
+      value: vote.52.178.198.226.nip.io
