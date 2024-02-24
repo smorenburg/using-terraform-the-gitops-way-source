@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   path: ./apps/vote/terraform
-  interval: 1m
+  interval: 10m
   tfstate:
     forceUnlock: auto
   approvePlan: auto
