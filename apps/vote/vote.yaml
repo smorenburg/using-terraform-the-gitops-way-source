@@ -25,7 +25,7 @@ spec:
         - name: ARM_SUBSCRIPTION_ID
           value: ae9db8ac-2682-4a98-ad36-7d13b2bd5a24
         - name: ARM_CLIENT_ID
-          value: 5a0f20fe-d335-45ca-8217-f1704d22d9ee
+          value: 8be53e77-e57e-4f23-a58d-8309ac65af2a
         - name: ARM_USE_OIDC
           value: "true"
         - name: ARM_OIDC_TOKEN_FILE_PATH
@@ -43,4 +43,4 @@ spec:
     - name: container_image
       value: mcr.microsoft.com/azuredocs/azure-vote-front:v1
     - name: ingress_rule_host
-      value: vote.52.178.207.153.nip.io
+      value: vote.52.169.235.227.nip.io

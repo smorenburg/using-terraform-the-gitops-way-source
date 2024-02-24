@@ -33,10 +33,10 @@ spec:
     controller:
       service:
         type: LoadBalancer
-        loadBalancerIP: "52.178.207.153"
+        loadBalancerIP: "52.169.235.227"
         annotations:
           service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
-          service.beta.kubernetes.io/azure-load-balancer-resource-group: rg-nordcloud-neu
+          service.beta.kubernetes.io/azure-load-balancer-resource-group: rg-nc-neu
       replicaCount: 3
       ingressClassResource:
         default: true
