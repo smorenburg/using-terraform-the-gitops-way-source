@@ -43,7 +43,7 @@ spec:
     - name: resource_group
       value: rg-tfstate-nc-neu
     - name: storage_account
-      value: stnc37a6
+      value: stnc738b
     - name: container_image
       value: smorenburg/snippetbox:0.0.6
     - name: ingress_rule_host
