@@ -33,7 +33,7 @@ spec:
   backendConfig:
     customConfiguration: |
       backend "azurerm" {
-       resource_group_name   = "rg-tfstate-nc-neu"
+        resource_group_name  = "rg-tfstate-nc-neu"
         storage_account_name = "stnc37a6"
         container_name       = "tfstate"
         key                  = "vote.northeurope.tfstate"
