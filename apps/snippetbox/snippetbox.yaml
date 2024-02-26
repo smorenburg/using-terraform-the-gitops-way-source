@@ -41,7 +41,7 @@ spec:
       }
   vars:
     - name: resource_group
-      value: rg-tfstate-nc-neu
+      value: rg-state-nc-neu
     - name: storage_account
       value: stnc738b
     - name: container_image
