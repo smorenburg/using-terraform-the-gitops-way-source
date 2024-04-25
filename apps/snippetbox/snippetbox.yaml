@@ -25,7 +25,7 @@ spec:
         - name: ARM_SUBSCRIPTION_ID
           value: ae9db8ac-2682-4a98-ad36-7d13b2bd5a24
         - name: ARM_CLIENT_ID
-          value: c2bcefc6-587e-41fd-9293-51927804e5f1
+          value: 576bd183-9d36-4439-bb4d-b55410eb5bf7
         - name: ARM_USE_OIDC
           value: "true"
         - name: ARM_OIDC_TOKEN_FILE_PATH
@@ -34,7 +34,7 @@ spec:
     customConfiguration: |
       backend "azurerm" {
         resource_group_name  = "rg-state-nc-neu"
-        storage_account_name = "stncafc1"
+        storage_account_name = "stnc193a"
         container_name       = "tfstate"
         key                  = "snippetbox.northeurope.tfstate"
         use_oidc             = true
@@ -43,8 +43,8 @@ spec:
     - name: resource_group
       value: rg-state-nc-neu
     - name: storage_account
-      value: stncafc1
+      value: stnc193a
     - name: container_image
       value: smorenburg/snippetbox:0.0.6
     - name: ingress_rule_host
-      value: snippetbox.40.69.37.249.nip.io
+      value: snippetbox.52.169.122.137.nip.io

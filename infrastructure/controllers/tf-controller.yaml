@@ -63,7 +63,7 @@ spec:
     runner:
       serviceAccount:
         annotations:
-          azure.workload.identity/client-id: c2bcefc6-587e-41fd-9293-51927804e5f1
+          azure.workload.identity/client-id: 576bd183-9d36-4439-bb4d-b55410eb5bf7
       image:
         repository: ghcr.io/flux-iac/tf-runner-azure
         tag: v0.16.0-rc.3

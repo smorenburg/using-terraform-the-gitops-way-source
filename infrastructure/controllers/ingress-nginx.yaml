@@ -33,7 +33,7 @@ spec:
     controller:
       service:
         type: LoadBalancer
-        loadBalancerIP: "40.69.37.249"
+        loadBalancerIP: "52.169.122.137"
         annotations:
           service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
           service.beta.kubernetes.io/azure-load-balancer-resource-group: rg-nc-neu
